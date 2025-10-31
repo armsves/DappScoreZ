@@ -1,0 +1,450 @@
+{
+  "address": "63uX58srXmpgXzZpdZUpBjDGWJj2fje227ecoVLS1Jvx",
+  "metadata": {
+    "name": "ratings",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "get_project_rating",
+      "discriminator": [
+        182,
+        230,
+        59,
+        235,
+        186,
+        140,
+        235,
+        220
+      ],
+      "accounts": [
+        {
+          "name": "project_rating",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  106,
+                  101,
+                  99,
+                  116,
+                  95,
+                  114,
+                  97,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "project_rating.project_id",
+                "account": "ProjectRating"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "get_user_rating",
+      "discriminator": [
+        185,
+        1,
+        36,
+        20,
+        205,
+        194,
+        222,
+        35
+      ],
+      "accounts": [
+        {
+          "name": "user_rating",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  114,
+                  97,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "user"
+              },
+              {
+                "kind": "arg",
+                "path": "project_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "_user",
+          "type": "pubkey"
+        },
+        {
+          "name": "_project_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "initialize_project_rating",
+      "discriminator": [
+        211,
+        160,
+        16,
+        26,
+        117,
+        232,
+        91,
+        30
+      ],
+      "accounts": [
+        {
+          "name": "project_rating",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  106,
+                  101,
+                  99,
+                  116,
+                  95,
+                  114,
+                  97,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "project_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "project_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "submit_rating",
+      "discriminator": [
+        238,
+        207,
+        253,
+        243,
+        170,
+        69,
+        73,
+        199
+      ],
+      "accounts": [
+        {
+          "name": "project_rating",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  106,
+                  101,
+                  99,
+                  116,
+                  95,
+                  114,
+                  97,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "project_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_rating",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  114,
+                  97,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "arg",
+                "path": "project_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "text_review",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  101,
+                  120,
+                  116,
+                  95,
+                  114,
+                  101,
+                  118,
+                  105,
+                  101,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "arg",
+                "path": "project_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "project_id",
+          "type": "u64"
+        },
+        {
+          "name": "rating",
+          "type": "u8"
+        },
+        {
+          "name": "review_text",
+          "type": {
+            "option": "string"
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "ProjectRating",
+      "discriminator": [
+        131,
+        20,
+        221,
+        253,
+        11,
+        74,
+        169,
+        5
+      ]
+    },
+    {
+      "name": "TextReview",
+      "discriminator": [
+        224,
+        134,
+        47,
+        145,
+        199,
+        183,
+        112,
+        62
+      ]
+    },
+    {
+      "name": "UserRating",
+      "discriminator": [
+        254,
+        218,
+        207,
+        119,
+        241,
+        58,
+        117,
+        150
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidRating",
+      "msg": "Rating must be between 1 and 5"
+    },
+    {
+      "code": 6001,
+      "name": "ArithmeticError",
+      "msg": "Arithmetic operation failed"
+    },
+    {
+      "code": 6002,
+      "name": "ReviewTooLong",
+      "msg": "Review text is too long (max 500 characters)"
+    }
+  ],
+  "types": [
+    {
+      "name": "ProjectRating",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "project_id",
+            "type": "u64"
+          },
+          {
+            "name": "total_rating",
+            "type": "u64"
+          },
+          {
+            "name": "total_votes",
+            "type": "u64"
+          },
+          {
+            "name": "average_rating",
+            "type": "f64"
+          },
+          {
+            "name": "review_count",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TextReview",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "project_id",
+            "type": "u64"
+          },
+          {
+            "name": "review_text",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserRating",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "project_id",
+            "type": "u64"
+          },
+          {
+            "name": "rating",
+            "type": "u8"
+          },
+          {
+            "name": "has_rated",
+            "type": "bool"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}

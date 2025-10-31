@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id             Int             @id @default(autoincrement())
+  name           String          @unique
+  description    String?
+  category       String?         // New field for project category
+  icon           String?         // New field for icon URL
+  website        String?
+  x              String?         // Renamed from twitter_url to x  
+  github         String?         // Renamed from github_url
+  programId      String?         // New field for Solana program ID
+  activated      Boolean         @default(false) // New field for admin activation
+  logo_url       String?
+  created_at     DateTime        @default(now())
+  updated_at     DateTime        @updatedAt
+  blockchain     String          @default("solana") // Changed default to solana
+  Comment        Comment[]
+  ProjectMetrics ProjectMetrics?
+  Vote           Vote[]
+  contracts      contracts[]
+  social_metrics social_metrics?
+  categories     categories[]    @relation("ProjectCategories")
+
+  @@map("projects")
+}
+
+model Comment {
+  id        String   @id
+  content   String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  projectId Int
+  projects  Project  @relation(fields: [projectId], references: [id])
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model ERC20Coin {
+  id       Int    @id @default(autoincrement())
+  name     String
+  symbol   String
+  address  String @unique
+  price    Float
+  chain    String
+  exchange String
+  url      String
+}
+
+model ProjectMetrics {
+  id               String  @id
+  githubStars      Int     @default(0)
+  twitterFollowers Int     @default(0)
+  totalVotes       Int     @default(0)
+  averageRating    Float   @default(0)
+  projectId        Int     @unique
+  projects         Project @relation(fields: [projectId], references: [id])
+}
+
+model User {
+  id             String       @id
+  stellarAddress String       @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime
+  Comment        Comment[]
+  UserMetrics    UserMetrics?
+  Vote           Vote[]
+}
+
+model UserMetrics {
+  id              String @id
+  userId          String @unique
+  totalVotes      Int    @default(0)
+  totalComments   Int    @default(0)
+  reputationScore Float  @default(0)
+  User            User   @relation(fields: [userId], references: [id])
+}
+
+model Vote {
+  id        String   @id
+  userId    String
+  value     Int
+  createdAt DateTime @default(now())
+  projectId Int
+  projects  Project  @relation(fields: [projectId], references: [id])
+  User      User     @relation(fields: [userId], references: [id])
+
+  @@unique([projectId, userId])
+}
+
+model categories {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime
+  projects    Project[] @relation("ProjectCategories")
+}
+
+model contracts {
+  id               Int      @id @default(autoincrement())
+  project_id       Int
+  name             String
+  address          String   @unique
+  type             String
+  interactions     Int      @default(0)
+  last_interaction DateTime @default(now())
+  projects         Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@index([address])
+}
+
+model social_metrics {
+  id                  Int      @id @default(autoincrement())
+  project_id          Int      @unique
+  github_stars        Int      @default(0)
+  github_forks        Int      @default(0)
+  github_last_update  DateTime @default(now())
+  twitter_followers   Int      @default(0)
+  twitter_last_update DateTime @default(now())
+  project_freshness   Float    @default(0)
+  projects            Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@index([project_freshness(sort: Desc)])
+}
