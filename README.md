@@ -1,6 +1,6 @@
-# DappScore - Solana Project Directory
+# DappScoreZ - Solana Project Directory
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsolana-developers%2Fanchor-web3js-nextjs&root-directory=frontend&demo-title=DappScore%20Solana%20Directory&demo-description=A%20beautiful%20project%20directory%20for%20Solana%20projects&demo-url=https%3A%2F%2Fdappscore.vercel.app%2F&project-name=dappscore&repository-name=dappscore)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsolana-developers%2Fanchor-web3js-nextjs&root-directory=frontend&demo-title=DappScoreZ%20Solana%20Directory&demo-description=A%20beautiful%20project%20directory%20for%20Solana%20projects&demo-url=https%3A%2F%2Fdappscorez.vercel.app%2F&project-name=dappscorez&repository-name=dappscorez)
 
 A beautiful project directory for discovering, rating, and submitting Solana projects with on-chain ratings and admin management. Built with Next.js, Prisma, and PostgreSQL.
 
@@ -41,6 +41,11 @@ ADMIN_WALLET_ADDRESS="YOUR_SOLANA_WALLET_ADDRESS_HERE"
 # Create one at: https://github.com/settings/tokens
 # Only needs 'public_repo' scope for reading public repository data
 GITHUB_TOKEN="ghp_your_token_here"
+
+# Optional: Twitter/X RapidAPI key for checking latest tweets
+# Get your API key from: https://rapidapi.com/twitter-api/api/twitter241
+# Free tier available with rate limits
+X_API_KEY="your_rapidapi_key_here"
 ```
 
 3. **Database Setup**
