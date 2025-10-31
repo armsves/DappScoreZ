@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DappScore",
+  title: "DappScoreZ",
   description: "Decentralized Application Rating Platform on Solana",
 };
 

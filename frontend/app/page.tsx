@@ -26,7 +26,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-blue-500 to-cyan-400 text-transparent bg-clip-text">
-            DappScore
+            DappScoreZ
           </h1>
           <p className="text-xl text-gray-300 mb-6">
             Discover, Rate & Submit the Best Solana Projects

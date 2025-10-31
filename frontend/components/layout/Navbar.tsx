@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { WalletButton } from '@/components/ui/WalletButton'
 import { Button } from '@/components/ui/button'
-import { Zap, Settings, TestTube } from 'lucide-react'
+import { Settings, TestTube } from 'lucide-react'
 
 interface NavbarProps {
   showAdminButton?: boolean
@@ -42,11 +43,16 @@ export function Navbar({ showAdminButton = true }: NavbarProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-              <Zap className="w-5 h-5 text-white" />
-            </div>
+            <Image
+              src="/DappScoreZlogo.png"
+              alt="DappScoreZ Logo"
+              width={32}
+              height={32}
+              className="object-contain"
+              priority
+            />
             <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 text-transparent bg-clip-text">
-              DappScore
+              DappScoreZ
             </h1>
           </Link>
 

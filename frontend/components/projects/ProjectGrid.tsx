@@ -155,7 +155,7 @@ export function ProjectGrid({
               : 'border-l-orange-500 hover:border-l-orange-600'
           }`}
         >
-          {/* DappScore Rating Badge in top right corner */}
+          {/* DappScoreZ Rating Badge in top right corner */}
           <div className="absolute top-2 right-2 z-10">
             <ProjectRatingBadge projectId={project.id} />
           </div>
